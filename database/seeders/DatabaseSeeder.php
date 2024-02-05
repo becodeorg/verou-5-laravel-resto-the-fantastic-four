@@ -25,5 +25,9 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Thierry',
             'email' => 'Thierry@gmail.com',
             'password'=>'test123',]);          
+        \App\Models\Employee::factory()->create(
+            ['name' => 'Example',
+            'email' => 'Example@gmail.com',
+            'password'=>'Example',]);          
     }
 }
