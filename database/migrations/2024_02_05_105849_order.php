@@ -10,12 +10,12 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-               Schema::create('customers', function (Blueprint $table) {
+     {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->foreignId('table_id')->references('id')->on('table');
+            $table->foreignId('product_id')->references('id')->on('product');
+            $table->foreignId('employee_id')->references('id')->on('employee');
 
         });
     }
@@ -25,7 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-                Schema::dropIfExists('customers');
-
+        //
     }
 };
