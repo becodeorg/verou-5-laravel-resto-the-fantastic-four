@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('category');
-            $table->unsignedSmallInteger('price');
-            $table->boolean('has_alcohol');
-            $table->json('allergies');//array in json?
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->foreignId('table_id')->references('id')->on('tables');
+            $table->text('notes');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('reservations');
     }
 };

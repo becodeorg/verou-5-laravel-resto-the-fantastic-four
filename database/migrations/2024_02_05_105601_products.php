@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-               Schema::create('customers', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-
+            $table->string('category');
+            $table->unsignedSmallInteger('price');
+            $table->boolean('has_alcohol');
+            $table->json('allergies');//array in json?
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -24,8 +27,7 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
-                Schema::dropIfExists('customers');
-
+    {        
+        Schema::dropIfExists('products');
     }
 };

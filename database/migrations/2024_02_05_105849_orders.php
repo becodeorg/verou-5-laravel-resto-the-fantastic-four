@@ -10,14 +10,13 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('reservations', function (Blueprint $table) {
+     {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('table_id')->references('id')->on('table');
-            $table->text('notes');
+            $table->foreignId('table_id')->references('id')->on('tables');
+            $table->foreignId('product_id')->references('id')->on('products');
+            $table->foreignId('employee_id')->references('id')->on('employees');
+
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('orders');
     }
 };
