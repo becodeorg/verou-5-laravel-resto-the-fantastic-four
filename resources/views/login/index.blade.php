@@ -9,8 +9,9 @@
         <div class="bg-white p-8 rounded shadow-md max-w-md w-full mx-auto mt-50">
             <h2 class="text-2xl font-semibold mb-4">Employees log-in</h2>
 
-            <form action="" method="POST">
-
+            <form action="{{ route('loginPost') }}" method="POST">
+                @csrf
+                @method('POST')
                 <div class="mt-4">
                     <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
                     <input type="text" id="username" name="username" class="mt-1 p-2 w-full border rounded-md">
