@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login',[LoginController::class,'index'])->name('login');
+
 Route::get('/menu',[MenuController::class,'index'])->name('menu');
 Route::get('/reservation',[ReservationController::class,'index'])->name('reservation');
 Route::get('/dashboard',[LoginController::class,'admin'])->middleware(['auth', 'verified'])->name('dashboard');
