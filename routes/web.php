@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::get('/menu',[MenuController::class,'index'])->name('menu');
+Route::get('/reservation',[ReservationController::class,'index'])->name('reservation');
+Route::get('/dashboard',[LoginController::class,'admin'])->middleware(['auth', 'verified'])->name('dashboard');
