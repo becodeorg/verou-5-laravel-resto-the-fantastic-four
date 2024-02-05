@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::get('/test', function () {return view('testing-p');})->name('test');
 
 Route::get('/menu',[MenuController::class,'index'])->name('menu');
 Route::get('/reservation',[ReservationController::class,'index'])->name('reservation');
