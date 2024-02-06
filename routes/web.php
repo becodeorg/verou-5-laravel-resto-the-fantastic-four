@@ -24,12 +24,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {return view('testing-p',["reservations"=>Reservation::all()]);})->name('test');
+
 Route::get('/home', function () {
-    return view('home.home');
+    return view('home.index');
+});
+
+Route::get('/contact', function () {
+    return view('contact.index');
 });
 
 Route::get('/login',[LoginController::class,'index'])->name('loginGet');
 Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/menu',[MenuController::class,'index'])->name('menu');
 Route::get('/reservation',[ReservationController::class,'index'])->name('reservation');
