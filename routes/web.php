@@ -31,10 +31,6 @@ Route::get('/contact', function () {
     return view('contact.index');
 });
 
-Route::get('/menu', function () {
-    return view('menu.index');
-});
-
 Route::get('/login',[LoginController::class,'index'])->name('loginGet');
 Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
