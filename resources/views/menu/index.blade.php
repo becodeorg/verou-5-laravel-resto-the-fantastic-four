@@ -8,7 +8,7 @@
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h1 class="mt-24 text-4xl text-center font-bold tracking-tight text-white sm:mt-10 sm:text-6xl">Our Menu</h1> 
           <h2 class="mt-24 text-4xl text-center font-bold tracking-tight text-white sm:mt-10 sm:text-2xl">Appetizers</h2><br><br>
-            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
+            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">
                 <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
                     <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
                         <img src="{{ asset('images/Cesar_Salad.jpg') }}"
@@ -94,7 +94,7 @@
             
             </div>
             <h2 class="mt-24 text-4xl text-center font-bold tracking-tight text-white sm:mt-10 sm:text-2xl">Main Courses</h2><br><br>
-            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
+            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">
                 <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
                     <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
                         <img src="{{ asset('images/Steak_and_fries.jpg') }}"
@@ -178,7 +178,7 @@
 
         </div>
         <h2 class="mt-24 text-4xl text-center font-bold tracking-tight text-white sm:mt-10 sm:text-2xl">Desserts</h2><br><br>
-            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
+            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">
                 <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
                     <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
                         <img src="{{ asset('images/Cheese_Plank.jpg') }}"
