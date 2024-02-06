@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\BookingFormController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ReservationController;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {return view('testing-p');})->name('test');
+Route::get('/test', function () {return view('testing-p',["reservations"=>Reservation::all()]);})->name('test');
 Route::get('/home', function () {
     return view('home.home');
 });
@@ -33,3 +35,10 @@ Route::get('/menu',[MenuController::class,'index'])->name('menu');
 Route::get('/reservation',[ReservationController::class,'index'])->name('reservation');
 
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+
+// Route::get('bookingoffer', [BookingFormController::class,'create'])->name('viewBooking');
+// Route::post('bookingoffer', [BookingFormController::class,'store'])->name('booking');
+// Route::post('bookingoffer', 'yourController@store')->middleware('MiddlewareName');

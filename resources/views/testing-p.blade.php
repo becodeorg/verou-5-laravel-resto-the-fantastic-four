@@ -11,30 +11,34 @@
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+          height: 650,
+          aspectRatio:2,
           initialView: 'dayGridMonth',
-           initialDate: '2023-11-07',
+           initialDate: '2024-02-07',
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
     events: [
+      @forEach($reservations as $reservation)
+        {
+          title: '{{$reservation->table_id}}',
+          start: '{{$reservation->time}}'
+        },
+      @endforeach
       {
-        title: 'All Day Event',
-        start: '2023-11-01'
+        title: 'All Day Test Event',
+        start: '2024-02-03'
       },
       {
-        title: 'Lunch',
-        start: '2023-11-12T12:00:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: '2023-11-13T07:00:00'
+        title: 'Lunch Test',
+        start: '2024-02-12T12:00:00'
       },]
         });
         calendar.render();
       });
     </script>
-    <div id='calendar'></div>
+    <div id='calendar' style="width: 1600px"></div>
 
 @endsection
