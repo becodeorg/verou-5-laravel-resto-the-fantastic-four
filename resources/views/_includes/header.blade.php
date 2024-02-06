@@ -3,7 +3,7 @@
         <h1 class="text-lg font-semibold">The Fantastic Four</h1>
         <ul class="flex gap-[40px] text-m">
             <li><a href="/">Home</a></li>
-            @guest()
+            @guest
                 <li><a href="{{ route('menu') }}">Menu</a></li>
                 <li><a href="{{ route('reservations') }}">Book table</a></li>
                 <li><a href="">Contact</a></li>
