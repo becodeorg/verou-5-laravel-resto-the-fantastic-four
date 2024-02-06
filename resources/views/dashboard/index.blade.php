@@ -7,7 +7,9 @@
 @endsection
 
 @section('content')
-    @auth
-        <h1>Welcome back, {{ auth()->user()->name }}</h1>
-    @endauth
+    <main>
+        @auth
+            <h1 class="text-center">Welcome back, {{ auth()->user()->name }}</h1>
+        @endauth
+    </main>
 @endsection

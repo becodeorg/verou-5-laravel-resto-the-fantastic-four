@@ -28,6 +28,7 @@ Route::get('/home', function () {
 
 Route::get('/login',[LoginController::class,'index'])->name('loginGet');
 Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/menu',[MenuController::class,'index'])->name('menu');
 Route::get('/reservation',[ReservationController::class,'index'])->name('reservation');
