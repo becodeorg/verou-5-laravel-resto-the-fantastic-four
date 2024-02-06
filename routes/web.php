@@ -38,7 +38,9 @@ Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/menu',[MenuController::class,'index'])->name('menu');
-Route::get('/reservation',[ReservationController::class,'index'])->name('reservation');
+Route::get('/menu/edit', [MenuController::class, 'edit'])->middleware(['auth', 'verified'])->name('editMenu');
+
+Route::get('/reservations',[ReservationController::class,'index'])->middleware(['auth', 'verified'])->name('reservations');
 
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
