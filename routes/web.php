@@ -22,8 +22,17 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {return view('testing-p');})->name('test');
+
 Route::get('/home', function () {
-    return view('home.home');
+    return view('home.index');
+});
+
+Route::get('/contact', function () {
+    return view('contact.index');
+});
+
+Route::get('/menu', function () {
+    return view('menu.index');
 });
 
 Route::get('/login',[LoginController::class,'index'])->name('loginGet');
