@@ -17,7 +17,7 @@ class TableFactory extends Factory
     public function definition(): array
     {
         return [
-            'places'=>4
+            'seats'=>4
         ];
     }
 }
