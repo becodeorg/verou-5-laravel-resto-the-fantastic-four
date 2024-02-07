@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Table::factory(10)->create();
+        for ( $i=8;$i<20;$i+=2){  //open from 8 am to 8pm?
+            \App\Models\Timeslot::factory()->create(['time'=>$i]);
+        }
         \App\Models\User::factory()->create(
             ['name' => 'Pieter',
             'email' => 'Pieter@gmail.com',

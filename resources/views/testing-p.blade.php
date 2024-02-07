@@ -14,12 +14,19 @@
           height: 650,
           aspectRatio:2,
           initialView: 'dayGridMonth',
-           initialDate: '2024-02-07',
+          validRange:{start:"{{now()}}"},
+          hiddenDays:[1,0],
+          initialDate: "{{now()}}",
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
+            },  
+            dateClick: function(info) {
+              location.href = '/bookingoffer/'+info.dateStr;
+              //route('viewBookingDay',["day"=>info.dateStr)]
+              //  alert('Date: ' + info.dateStr);
+  },
     events: [
       @forEach($reservations as $reservation)
         {

@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ReservationController;
 use App\Models\Reservation;
+use App\Models\Timeslot;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,7 @@ Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth
 
 
 
-// Route::get('bookingoffer', [BookingFormController::class,'create'])->name('viewBooking');
-// Route::post('bookingoffer', [BookingFormController::class,'store'])->name('booking');
+Route::get('bookingoffer', [BookingFormController::class,'create'])->name('viewBooking');
+Route::get('bookingoffer/{day}', [BookingFormController::class,'view'])->name('viewBookingDay');
+Route::post('bookingoffer', [BookingFormController::class,'store'])->name('booking');
 // Route::post('bookingoffer', 'yourController@store')->middleware('MiddlewareName');
