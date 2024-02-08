@@ -10,7 +10,7 @@
             @endguest
 
             @auth
-                <li><a href="">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('logout') }}" class="font-bold text-red-400">Logout</a></li>
             @endauth
         </ul>

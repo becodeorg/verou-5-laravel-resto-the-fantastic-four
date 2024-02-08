@@ -21,7 +21,11 @@ class MenuController extends Controller
 
     public function edit ()
     {
-        return view('menu.edit');
+        $menuItems = Menu::all();
+
+        $menuByType = $menuItems->groupBy('type');
+
+        return view('menu.edit-index', ['menuByType' => $menuByType]);
     }
 }
 
