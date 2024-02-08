@@ -13,16 +13,10 @@ class MenuController extends Controller
     public function index()
     {
         $menuItems = Menu::all();
-
         $menuByType = $menuItems->groupBy('type');
-
         return view('menu.index', ['menuByType' => $menuByType]);
     }
 
-    public function edit ()
-    {
-        return view('menu.edit');
-    }
 }
 
 /* use Illuminate\Support\Facades\DB;

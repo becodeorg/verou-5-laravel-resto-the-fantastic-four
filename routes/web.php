@@ -37,11 +37,13 @@ Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/menu',[MenuController::class,'index'])->name('menu');
-Route::get('/menu/edit', [MenuController::class, 'edit'])->middleware(['auth', 'verified'])->name('editMenu');
 
-// Route::get('/reservations',[ReservationController::class,'index'])->middleware(['auth', 'verified'])->name('reservations');
 
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/reservations',[DashboardController::class,'reservations'])->middleware(['auth', 'verified'])->name('dashboard-reservations');
+Route::get('/dashboard/menu', [DashboardController::class, 'editMenu'])->middleware(['auth', 'verified'])->name('editMenu');
+Route::post('dashboard/menu/edit-{id}',[DashboardController::class, 'edit'])->middleware(['auth', 'verified'])->name('editItem');
+Route::post('dashboard/menu/update', [DashboardController::class, 'update'])->middleware(['auth','verified'])->name('update-menu');
 
 
 
