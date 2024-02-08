@@ -23,4 +23,17 @@ class DashboardController extends Controller
         $menuByType = $menuItems->groupBy('type');
         return view('dashboard.menu-index', ['menuByType' => $menuByType]);
     }
+
+    public function edit($id)
+    {
+        $item = Menu::find($id);
+        return view ('dashboard.edit',[
+            'item'=>$item,
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        dd($request);
+    }
 }
