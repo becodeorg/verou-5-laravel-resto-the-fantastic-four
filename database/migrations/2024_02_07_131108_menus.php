@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('gluten');
             $table->boolean('lactose');
             $table->boolean('nuts');
+            $table->timestamps();
         });
     }
 

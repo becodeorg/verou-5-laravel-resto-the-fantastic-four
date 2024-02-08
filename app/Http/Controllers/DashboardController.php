@@ -34,6 +34,51 @@ class DashboardController extends Controller
 
     public function update(Request $request)
     {
-        dd($request);
+        // $validate = $request->validate([
+        //     'name'=>'required|string|max:100',
+        //     'description'=>'required|string',
+        //     'price'=>'required|integer',
+        //     'image'=>'required|string',
+        //     'gluten'=>'required|bool',
+        //     'lactose'=>'required|bool',
+        //     'nuts'=>'required|bool',
+        //     'id'=>'required|integer',
+        // ]);
+
+        // $name = $validate['name'];
+        // $description = $validate['description'];
+        // $price = $validate['price'];
+        // $image = $validate['image'];
+        // $gluten = $validate['gluten'];
+        // $lactose = $validate['lactose'];
+        // $nuts = $validate['nuts'];
+        // $id = $validate['id'];
+
+        $validatedData = $request->validate([
+        'name' => 'required|string|max:100',
+        'description' => 'required|string',
+        'price' => 'required|integer',
+        'image' => 'required|string',
+        'gluten' => 'required|boolean',
+        'lactose' => 'required|boolean',
+        'nuts' => 'required|boolean',
+        'id' => 'required|integer',
+        ]);
+
+        $id = $validatedData['id'];
+
+        $menu = Menu::findOrFail($id);
+
+        $menu->update([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'image' => $validatedData['image'],
+            'gluten' => $validatedData['gluten'],
+            'lactose' => $validatedData['lactose'],
+            'nuts' => $validatedData['nuts'],
+        ]);
+
+        return redirect('/dashboard/menu');
     }
 }
