@@ -32,14 +32,7 @@
           start: '{{$reservation->time}}'
         },
       @endforeach
-      {
-        title: 'All Day Test Event',
-        start: '2024-02-13'
-      },
-      {
-        title: 'Lunch Test',
-        start: '2024-02-12T12:00:00'
-      },]
+     ]
         });
         calendar.render();
       });

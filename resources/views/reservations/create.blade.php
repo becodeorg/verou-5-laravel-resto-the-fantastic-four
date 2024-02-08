@@ -12,12 +12,12 @@
 @csrf
 
 <div class="form-group">
-<label for='name'>name </label>
+<label for='name' required>name </label>
 <input type='text' name='name'id='name'> 
 </div>
 
 <div class="form-group">
-<label for='email'>email</label>
+<label for='email' required>email</label>
 <input type='text' id='email'name='email'> 
 </div>
 
@@ -40,6 +40,16 @@
 <label for='notes'>notes </label>
 <input type='text' id='notes'name='notes'> 
 </div>
+
+@if ($errors->any())
+    <div class="errorDisplay" style="color:red">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <button type="submit">book table</button>
 </form>

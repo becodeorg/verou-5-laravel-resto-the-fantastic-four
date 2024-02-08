@@ -19,28 +19,45 @@ class ReservationController extends Controller
     $date=new Carbon($day);
     $dateEnd=new Carbon($day);
     $dateEnd->addHours(23);
+    // $reservationsgpt = Reservation::whereBetween('time', [$date, $dateEnd])->get()->groupBy('table_id');
     $reservations=Reservation::select('time','table_id')
                                       ->whereBetween('time',[$date,$dateEnd])
-                                      //  ->groupBy('table_id')
-                                       ->get();
-
+                                       ->get()->groupBy('table_id');
     $timeslots=Timeslot::all();
     $tables=Table::all();
-    $availible=[];
-    foreach($tables as $table)
-    {
-      foreach($timeslots as $timeslot)
-      {
-        
+    $available=[];
+
+    
+    foreach ($tables as $table) {
+      $tableAvailableTimeslots = []; // Initialize array to store available timeslots for this table
+      
+      // Loop through all timeslots
+      foreach ($timeslots as $timeslot) {
+        $isAvailable = true; // Assume the timeslot is available initially
+        // Check if there are any reservations for this timeslot and table
+        $time=$day.' '.$timeslot->time.':00:00';//make 'hour' a full day string to compare
+        foreach ($reservations as $reservedTable) {
+          foreach ($reservedTable as $reservedTime) {
+            if ($reservedTime->time == $time&& $reservedTime->table_id == $table->id) {
+              // If a reservation is found for this timeslot and table, mark it as unavailable
+            $isAvailable = false;
+            break; // No need to check further reservations once a reservation is found
+          }
+        }
+      }
+      // If the timeslot is still available after checking all reservations, add it to the table's available timeslots
+      if ($isAvailable) {
+        $tableAvailableTimeslots[] = $timeslot;
       }
     }
-    // return view('reservations.create',[
-    //                                   "availible"=>$availible
-    //                                   ]);
-    return view('reservations.create',["timeslots"=>$timeslots,
-                                      "tables"=>$tables,
-                                      "reservations"=>$reservations,
-                                      "day"=>$day
+    
+    // Add the table's available timeslots to the overall available array
+    $available[$table->id] = $tableAvailableTimeslots;
+  }
+  dd($available);
+    
+    return view('reservations.create',[
+                                      "availible"=>$available
                                       ]);
 }
 
@@ -52,35 +69,22 @@ class ReservationController extends Controller
  */
 public function store(Request $request)
 {
-  $validat=$request->validate([
-    'name' => 'required',
-    'email' => 'required',
+  $request->validate([
+    'name' => 'required|min:2',
+    'email' => 'required|email',
     'time' => 'required',
     'table_id' => 'required',
   ]);
-  // dd($request);
-$reservation = new Reservation;
+
+  $reservation = new Reservation;
   $reservation->table_id = $request->table_id;
   $reservation->email = $request->email;
   $reservation->name = $request->name;
   $reservation->time = $request->day.' '.$request->time.':00:00';
   $reservation->notes = $request->notes?? '';
-  // $reservation->table_id = $reservation->input('table_id');
-  // $reservation->email = $reservation->input('email');
-  // $reservation->name = $reservation->input('name');
-  // $reservation->time = $reservation->input('time');
-  // $reservation->notes = $reservation->input('notes');
-  // $reservation = new Reservation([
-  //   'table_id' => $reservation->input('table_id'),
-  //   'email' => $reservation->input('email'),
-  //   'name' => $reservation->input('name'),
-  //   'time' => $reservation->input('time'),
-  //   'notes' => $reservation->input('notes')?? '',
-  // ]);
 
   $reservation->save();
 
-  //redirect
   return redirect('/reservations')->with('success', 'Booking Submitted');
 }
 }
