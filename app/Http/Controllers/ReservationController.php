@@ -23,8 +23,7 @@ class ReservationController extends Controller
                                       ->whereBetween('time',[$date,$dateEnd])
                                       //  ->groupBy('table_id')
                                        ->get();
-    // dd($reservations);
-    
+
     $timeslots=Timeslot::all();
     $tables=Table::all();
     $availible=[];
@@ -40,7 +39,8 @@ class ReservationController extends Controller
     //                                   ]);
     return view('reservations.create',["timeslots"=>$timeslots,
                                       "tables"=>$tables,
-                                      "reservations"=>$reservations
+                                      "reservations"=>$reservations,
+                                      "day"=>$day
                                       ]);
 }
 
@@ -50,21 +50,21 @@ class ReservationController extends Controller
  * @param  \Illuminate\Http\Request  $request
  * @return \Illuminate\Http\Response
  */
-public function store(Request $reservation)
+public function store(Request $request)
 {
-  $this->validate($reservation, [
-  'table_id' => 'required',
-  'email' => 'required',
-  'name' => 'required',
-  'time' => 'required',
+  $validat=$request->validate([
+    'name' => 'required',
+    'email' => 'required',
+    'time' => 'required',
+    'table_id' => 'required',
   ]);
-
-  $reservation = new Reservation;
-  $reservation->table_id = 1;
-  $reservation->email = 'testing';
-  $reservation->name = 'testing';
-  $reservation->time = 'testing';
-  $reservation->notes = 'testing';
+  // dd($request);
+$reservation = new Reservation;
+  $reservation->table_id = $request->table_id;
+  $reservation->email = $request->email;
+  $reservation->name = $request->name;
+  $reservation->time = $request->day.' '.$request->time.':00:00';
+  $reservation->notes = $request->notes?? '';
   // $reservation->table_id = $reservation->input('table_id');
   // $reservation->email = $reservation->input('email');
   // $reservation->name = $reservation->input('name');
