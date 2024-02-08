@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\v;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -12,7 +12,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menuItems = DB::table('menus')->get();
+        $menuItems = Menu::all();
 
         $menuByType = $menuItems->groupBy('type');
 
