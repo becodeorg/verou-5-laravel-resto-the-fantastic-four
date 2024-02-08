@@ -8,7 +8,7 @@
 <hr>
 <h2>Booking Form</h2>
 <hr>
-<form action="{{route("booking")}}" method="POST">
+<form action="{{route("reservations")}}" method="POST">
 @csrf
 
 <div class="form-group">
@@ -26,15 +26,13 @@
 <select name="time" id="time">
   @foreach($timeslots as $timeslot)
     <option value="{{$timeslot->time}}">{{$timeslot->time}}:00</option>
-    @endforeach
-  </select>
+  @endforeach
+</select>
 <select name="tables" id="tables">
   @foreach($tables as $table)
     <option value="{{$table}}" >table {{$table->id}} (seats {{$table->places}})</option>
-    {{-- ($reservations) ? ' disabled' : '' --}}
   @endforeach
-  </select>
-
+</select>
 </div>
 
 <div class="form-group">
@@ -44,5 +42,4 @@
 
 <button type="submit">book table</button>
 </form>
-{{dd($reservations)}}
 @endsection
