@@ -6,7 +6,7 @@
             @guest
                 <li><a href="{{ route('menu') }}">Menu</a></li>
                 <li><a href="{{ route('reservations') }}">Book table</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
             @endguest
 
             @auth

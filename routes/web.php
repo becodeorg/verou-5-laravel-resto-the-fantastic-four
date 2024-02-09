@@ -30,7 +30,7 @@ Route::get('/home', function () {
 
 Route::get('/contact', function () {
     return view('contact.index');
-});
+})->name('contact');
 
 Route::get('/login',[LoginController::class,'index'])->name('loginGet');
 Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
