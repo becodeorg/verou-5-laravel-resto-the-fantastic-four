@@ -20,19 +20,17 @@
 <label for='email' required>email</label>
 <input type='text' id='email'name='email'> 
 </div>
-
 <div class="form-group">
-<label for='time'>select time and table</label>
-<select name="time" id="time" name="time">
-  @foreach($timeslots as $timeslot)
-    <option value="{{$timeslot->time}}">{{$timeslot->time}}:00</option>
-  @endforeach
-</select>
-<select name="table_id" id="tables">
-    @foreach ($tables as $table)
-        <option value="{{ $table->id }}"> table no{{ $table->id }}</option>
+  <label for='tableANDtime'>select time and table</label>
+  <select name="tableANDtime">
+    @foreach($available as $table=>$time)
+      <optgroup label="Table {{$table}}"data-table_id="{{$table}}" name='table_id'>
+        @foreach($time as $slot)
+          <option value="{{$table .'~' .$slot->time}}">{{$slot->time}}:00</option>
+        @endforeach
+      </optgroup>
     @endforeach
-</select>
+  </select>
 </div>
 <input type="hidden" name="day" value="{{$day}}">
 

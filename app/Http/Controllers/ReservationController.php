@@ -19,7 +19,6 @@ class ReservationController extends Controller
     $date=new Carbon($day);
     $dateEnd=new Carbon($day);
     $dateEnd->addHours(23);
-    // $reservationsgpt = Reservation::whereBetween('time', [$date, $dateEnd])->get()->groupBy('table_id');
     $reservations=Reservation::select('time','table_id')
                                       ->whereBetween('time',[$date,$dateEnd])
                                        ->get()->groupBy('table_id');
@@ -31,11 +30,11 @@ class ReservationController extends Controller
     foreach ($tables as $table) {
       $tableAvailableTimeslots = []; // Initialize array to store available timeslots for this table
       
-      // Loop through all timeslots
       foreach ($timeslots as $timeslot) {
         $isAvailable = true; // Assume the timeslot is available initially
-        // Check if there are any reservations for this timeslot and table
-        $time=$day.' '.$timeslot->time.':00:00';//make 'hour' a full day string to compare
+        ($timeslot->time<10)?//make 08 instead of 8 !!!!!
+        $time=$day.' 0'.$timeslot->time.':00:00'://make 'hour' a full day string to compare
+        $time=$day.' '.$timeslot->time.':00:00';
         foreach ($reservations as $reservedTable) {
           foreach ($reservedTable as $reservedTime) {
             if ($reservedTime->time == $time&& $reservedTime->table_id == $table->id) {
@@ -54,10 +53,10 @@ class ReservationController extends Controller
     // Add the table's available timeslots to the overall available array
     $available[$table->id] = $tableAvailableTimeslots;
   }
-  dd($available);
     
     return view('reservations.create',[
-                                      "availible"=>$available
+                                      "available"=>$available,
+                                      'day'=>$day
                                       ]);
 }
 
@@ -72,19 +71,17 @@ public function store(Request $request)
   $request->validate([
     'name' => 'required|min:2',
     'email' => 'required|email',
-    'time' => 'required',
-    'table_id' => 'required',
+    'tableANDtime' => 'required',
   ]);
-
+  $booked=explode('~',$request->tableANDtime);
   $reservation = new Reservation;
-  $reservation->table_id = $request->table_id;
+  $reservation->table_id = $booked[0];
   $reservation->email = $request->email;
   $reservation->name = $request->name;
-  $reservation->time = $request->day.' '.$request->time.':00:00';
+  $reservation->time = $request->day.' '.$booked[1].':00:00';
   $reservation->notes = $request->notes?? '';
 
   $reservation->save();
-
   return redirect('/reservations')->with('success', 'Booking Submitted');
 }
 }
