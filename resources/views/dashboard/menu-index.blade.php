@@ -47,6 +47,12 @@
                                 this
                                 Item</button>
                         </form>
+                        <form action="{{ route('deleteItem', ['id' => $item->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                            <button class="p-1 bg-red-500 text-white rounded-md hover:bg-red-600">Delete</button>
+                        </form>
                     </div>
                     <br>
                 @endforeach
