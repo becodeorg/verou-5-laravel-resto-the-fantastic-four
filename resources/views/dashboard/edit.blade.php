@@ -40,7 +40,6 @@
             <div class="inline-block w-auto mr-3">
                 <label class="block" for="nuts">Nuts?</label>
                 <select class="block mb-5" name="nuts" id="nuts">
-                    <option value=""></option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>

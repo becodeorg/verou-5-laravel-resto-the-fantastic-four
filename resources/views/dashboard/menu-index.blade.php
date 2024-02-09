@@ -19,9 +19,8 @@
             <div>
                 @foreach ($items as $item)
                     <div class="border-solid border-black border-2 p-3 w-1/2 mx-auto">
-                        <form action="{{ route('editItem', ['id' => $item->id]) }}" method="POST">
+                        <form action="{{ route('editItem', ['id' => $item->id]) }}" method="GET">
                             @csrf
-                            @method('post')
                             <img src="{{ asset($item->image) }}" alt="" class="h-40">
                             <h3>{{ $item->name }}</h3>
                             <p> {{ $item->description }}</p>

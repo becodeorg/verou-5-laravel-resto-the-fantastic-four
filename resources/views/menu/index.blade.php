@@ -13,9 +13,14 @@
 
   @section('content')
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-      <h1 class="text-4xl text-center font-bold tracking-tight text-white sm:mt-10 sm:text-6xl">Our Delicious Menu</h1>
+      <h1 class="text-4xl text-center font-bold tracking-tight text-blue-900 sm:mt-10 sm:text-6xl">Our Delicious Menu</h1>
       @foreach($menuByType as $type => $items)
-          <h2 class="mt-12 text-3xl text-center font-bold tracking-tight text-white">{{ ucfirst($type) }}</h2>
+          <h2 class="mt-12 text-4xl text-center font-bold tracking-tight text-blue-900">                
+            @if ($type == 'main_course')
+            Main Course
+        @else
+            {{ ucfirst($type) }}
+        @endif</h2>
           <div class="mt-6 grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8">
               @foreach($items as $item)
               <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
