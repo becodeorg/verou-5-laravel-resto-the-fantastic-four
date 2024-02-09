@@ -34,26 +34,6 @@ class DashboardController extends Controller
 
     public function update(Request $request)
     {
-        // $validate = $request->validate([
-        //     'name'=>'required|string|max:100',
-        //     'description'=>'required|string',
-        //     'price'=>'required|integer',
-        //     'image'=>'required|string',
-        //     'gluten'=>'required|bool',
-        //     'lactose'=>'required|bool',
-        //     'nuts'=>'required|bool',
-        //     'id'=>'required|integer',
-        // ]);
-
-        // $name = $validate['name'];
-        // $description = $validate['description'];
-        // $price = $validate['price'];
-        // $image = $validate['image'];
-        // $gluten = $validate['gluten'];
-        // $lactose = $validate['lactose'];
-        // $nuts = $validate['nuts'];
-        // $id = $validate['id'];
-
         $validatedData = $request->validate([
         'name' => 'required|string|max:100',
         'description' => 'required|string',
@@ -68,7 +48,6 @@ class DashboardController extends Controller
         $id = $validatedData['id'];
 
         $menu = Menu::findOrFail($id);
-
         $menu->update([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
@@ -80,5 +59,11 @@ class DashboardController extends Controller
         ]);
 
         return redirect('/dashboard/menu');
+    }
+
+    public function destroy(Request $request)
+    {
+        Menu::where('id', $request->id)->delete();
+        return back();
     }
 }

@@ -30,7 +30,7 @@ Route::get('/home', function () {
 
 Route::get('/contact', function () {
     return view('contact.index');
-});
+})->name('contact');
 
 Route::get('/login',[LoginController::class,'index'])->name('loginGet');
 Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
@@ -43,6 +43,7 @@ Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth
 Route::get('/dashboard/reservations',[DashboardController::class,'reservations'])->middleware(['auth', 'verified'])->name('dashboard-reservations');
 Route::get('/dashboard/menu', [DashboardController::class, 'editMenu'])->middleware(['auth', 'verified'])->name('editMenu');
 Route::get('dashboard/menu/edit-{id}',[DashboardController::class, 'edit'])->middleware(['auth', 'verified'])->name('editItem');
+Route::delete('dashboard/menu/delete-{id}', [DashboardController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteItem');
 Route::post('dashboard/menu/update', [DashboardController::class, 'update'])->middleware(['auth','verified'])->name('update-menu');
 
 
