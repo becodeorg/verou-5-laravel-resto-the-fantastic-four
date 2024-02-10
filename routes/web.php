@@ -54,3 +54,5 @@ Route::get('/reservations/{day}', [ReservationController::class,'view'])->name('
 Route::post('/reservations', [ReservationController::class,'store'])->name('reservating');
 Route::post('/booked', [ReservationController::class,'success'])->name('booked');
 // Route::post('bookingoffer', 'yourController@store')->middleware('MiddlewareName');
+
+
