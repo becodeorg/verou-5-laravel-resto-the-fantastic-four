@@ -19,7 +19,7 @@ class DashboardController extends Controller
 
     public function editMenu()
     {
-        $menuItems = Menu::all();
+        $menuItems  = Menu::all();
         $menuByType = $menuItems->groupBy('type');
         return view('dashboard.menu-index', ['menuByType' => $menuByType]);
     }
@@ -28,34 +28,34 @@ class DashboardController extends Controller
     {
         $item = Menu::find($id);
         return view ('dashboard.edit',[
-            'item'=>$item,
+            'item' => $item,
         ]);
     }
 
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-        'name' => 'required|string|max:100',
+        'name'        => 'required|string|max:100',
         'description' => 'required|string',
-        'price' => 'required|integer',
-        'image' => 'required|string',
-        'gluten' => 'required|boolean',
-        'lactose' => 'required|boolean',
-        'nuts' => 'required|boolean',
-        'id' => 'required|integer',
+        'price'       => 'required|integer',
+        'image'       => 'required|string',
+        'gluten'      => 'required|boolean',
+        'lactose'     => 'required|boolean',
+        'nuts'        => 'required|boolean',
+        'id'          => 'required|integer',
         ]);
 
         $id = $validatedData['id'];
 
         $menu = Menu::findOrFail($id);
         $menu->update([
-            'name' => $validatedData['name'],
+            'name'        => $validatedData['name'],
             'description' => $validatedData['description'],
-            'price' => $validatedData['price'],
-            'image' => $validatedData['image'],
-            'gluten' => $validatedData['gluten'],
-            'lactose' => $validatedData['lactose'],
-            'nuts' => $validatedData['nuts'],
+            'price'       => $validatedData['price'],
+            'image'       => $validatedData['image'],
+            'gluten'      => $validatedData['gluten'],
+            'lactose'     => $validatedData['lactose'],
+            'nuts'        => $validatedData['nuts'],
         ]);
 
         return redirect('/dashboard/menu');

@@ -31,35 +31,4 @@ class employeeController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(cv $cv)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(cv $cv)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, cv $cv)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(cv $cv)
-    {
-        //
-    }
 }

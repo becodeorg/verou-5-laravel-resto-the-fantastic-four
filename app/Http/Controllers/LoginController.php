@@ -16,8 +16,8 @@ class LoginController extends Controller
     {
 
         $credentials = $request->validate([
-            'username'=> 'required|string|max:255',
-            'password'=> 'required|string|max:255',
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|max:255',
         ]);
 
         $username = $credentials['username'];
@@ -25,8 +25,8 @@ class LoginController extends Controller
 
 
         if (Auth::attempt([
-            'name'=> $username,
-            'password'=> $password,
+            'name'     => $username,
+            'password' => $password,
         ])) {
             return redirect('/dashboard');
         }
