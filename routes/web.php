@@ -47,10 +47,7 @@ Route::delete('dashboard/menu/delete-{id}', [DashboardController::class, 'destro
 Route::post('dashboard/menu/update', [DashboardController::class, 'update'])->middleware(['auth','verified'])->name('update-menu');
 
 
-
-Route::get('/reservations', function () {return view('reservations.index',["reservations"=>Reservation::all()]);})->name('reservations');
-// Route::get('reservations', [ReservationController::class,'create'])->name('reservations');
+Route::get('reservations', [ReservationController::class,'create'])->name('reservations');
 Route::get('/reservations/{day}', [ReservationController::class,'view'])->name('viewReservation');
 Route::post('/reservations', [ReservationController::class,'store'])->name('reservating');
 Route::post('/booked', [ReservationController::class,'success'])->name('booked');
-// Route::post('bookingoffer', 'yourController@store')->middleware('MiddlewareName');
